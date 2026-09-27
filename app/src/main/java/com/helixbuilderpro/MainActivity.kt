@@ -1,14 +1,15 @@
-package com.helixbuilderpro
+
+    package com.helixbuilderpro
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+
 
 class MainActivity : ComponentActivity() {
 
@@ -16,136 +17,171 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+
             MaterialTheme {
-                HelixBuilderScreen()
+
+                HelixBuilderApp()
+
             }
+
         }
     }
 }
 
 
 @Composable
-fuvar screen by remember { mutableStateOf("home") }n HelixBuilderScreen() {
+fun HelixBuilderApp() {
 
-    Scaffold(
+    var screen by remember {
+        mutableStateOf("home")
+    }
 
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text("🌀 HelixBuilderPro")
-                }
-            )
+
+    when(screen) {
+
+
+        "assembly" -> {
+
+            AssemblyWizard()
+
         }
 
-    ) { padding ->
 
-        Column(
+        "calculator" -> {
 
-            modifier = Modifier
-                .padding(padding)
-                .padding(16.dp),
+            Calculator()
 
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-
-        ) {
+        }
 
 
-            Card(
+        "3d" -> {
 
-                modifier = Modifier.fillMaxWidth()
+            Helix3DViewer()
+
+        }
+
+
+        "printer" -> {
+
+            PrinterGuide()
+
+        }
+
+
+        else -> {
+
+
+            Column(
+
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
+
+                verticalArrangement = Arrangement.spacedBy(18.dp)
 
             ) {
 
-                Column(
 
-                    modifier = Modifier.padding(16.dp)
+                Text(
 
-                ) {
+                    text = "🌀 Helix Builder Pro",
 
+                    style = MaterialTheme.typography.headlineMedium
 
-                    Text(
-
-                        text = "Helix Antenna 4990 MHz",
-
-                        style = MaterialTheme.typography.titleLarge
-
-                    )
+                )
 
 
-                    Spacer(
+                Text(
 
-                        modifier = Modifier.height(8.dp)
+                    text = "Антенна Helix 4990 MHz\n12 витков"
 
-                    )
+                )
 
 
-                    Text("🌀 Количество витков: 12")
-                    Text("🔩 Диаметр провода: 1.5 мм")
-                    Text("📏 Диаметр спирали: 19.1 мм")
-                    Text("↕ Шаг витка: 13.8 мм")
+                Button(
+
+                    onClick = {
+
+                        screen = "assembly"
+
+                    },
+
+                    modifier = Modifier.fillMaxWidth()
+
+                ){
+
+                    Text("🛠 Мастер сборки")
 
                 }
+
+
+
+                Button(
+
+                    onClick = {
+
+                        screen = "calculator"
+
+                    },
+
+                    modifier = Modifier.fillMaxWidth()
+
+                ){
+
+                    Text("📐 Калькулятор")
+
+                }
+
+
+
+                Button(
+
+                    onClick = {
+
+                        screen = "3d"
+
+                    },
+
+                    modifier = Modifier.fillMaxWidth()
+
+                ){
+
+                    Text("🌀 3D модель")
+
+                }
+
+
+
+                Button(
+
+                    onClick = {
+
+                        screen = "printer"
+
+                    },
+
+                    modifier = Modifier.fillMaxWidth()
+
+                ){
+
+                    Text("🖨 3D печать")
+
+                }
+
+
             }
 
+        }
 
+    }
 
-            Button(
+}
 
-                onClick = {},
-
-                modifier = Modifier.fillMaxWidth()
-
-            ) {
-
-                Text("🛠 Мастер сборки")
-
-            }
-
-
-
-            Button(
-    onClick = {
-        screen = "assembly"
-    },
-
-                
 
             
 
-            ) {
 
-                Text("📐 Калькулятор")
+                    
+        
+    
 
-            }
-
-
-
-            Button(
-
-                onClick = {},
-
-                modifier = Modifier.fillMaxWidth()
-
-            ) {
-
-                Text("📖 Инструкция")
-
-            }
-
-
-
-            Button(
-
-                onClick = {},
-
-                modifier = Modifier.fillMaxWidth()
-
-            ) {
-
-                Text("🖨 3D Печать")
-
-            }
-
-        }
-    }
-}
