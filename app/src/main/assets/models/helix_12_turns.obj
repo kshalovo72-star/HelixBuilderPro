@@ -1,0 +1,22 @@
+# HelixBuilderPro - 12 turn helix antenna model
+# Simple 3D OBJ placeholder model
+# Units: mm
+
+v 0 0 0
+v 20 0 0
+v 20 20 0
+v 0 20 0
+v 0 0 20
+v 20 0 20
+v 20 20 20
+v 0 20 20
+
+f 1 2 3 4
+f 5 8 7 6
+f 1 5 6 2
+f 2 6 7 3
+f 3 7 8 4
+f 5 1 4 8
+
+# TODO: replace with detailed spiral coil mesh:
+# 12 turns, feed point, reflector and mounting parts
