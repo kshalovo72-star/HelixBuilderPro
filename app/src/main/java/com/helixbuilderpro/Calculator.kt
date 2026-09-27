@@ -1,5 +1,3 @@
-
-
 package com.helixbuilderpro
 
 import androidx.compose.foundation.layout.*
@@ -14,7 +12,7 @@ fun Calculator() {
 
     var frequency by remember { mutableStateOf("4990") }
     var turns by remember { mutableStateOf("12") }
-    var wire by remember { mutableStateOf("1.5") }
+    var diameter by remember { mutableStateOf("30") }
 
     var result by remember { mutableStateOf("") }
 
@@ -36,24 +34,35 @@ fun Calculator() {
         )
 
 
+        Text(
+            text = "Расчёт параметров Helix 4990 MHz"
+        )
+
+
         OutlinedTextField(
             value = frequency,
             onValueChange = { frequency = it },
-            label = { Text("Частота MHz") }
+            label = {
+                Text("Частота MHz")
+            }
         )
 
 
         OutlinedTextField(
             value = turns,
             onValueChange = { turns = it },
-            label = { Text("Количество витков") }
+            label = {
+                Text("Количество витков")
+            }
         )
 
 
         OutlinedTextField(
-            value = wire,
-            onValueChange = { wire = it },
-            label = { Text("Диаметр провода мм") }
+            value = diameter,
+            onValueChange = { diameter = it },
+            label = {
+                Text("Диаметр спирали мм")
+            }
         )
 
 
@@ -61,37 +70,46 @@ fun Calculator() {
 
             onClick = {
 
+
                 val f = frequency.toDoubleOrNull() ?: 4990.0
                 val t = turns.toDoubleOrNull() ?: 12.0
-
-                val wavelength = 300000000 / (f * 1000000)
-
-                val diameter = wavelength / 3.14
-
-                val step = wavelength / (t * 2)
+                val d = diameter.toDoubleOrNull() ?: 30.0
 
 
-                result =
-                    """
-                    Расчёт готов:
+                val wavelength = 300.0 / f
 
-                    🌀 Витков: ${t.toInt()}
+                val step = wavelength * 1000 / t
 
-                    📡 Длина волны:
-                    ${"%.3f".format(wavelength)} м
+                val wireLength =
+                    kotlin.math.PI * d * t / 1000
 
-                    📏 Расчётный шаг:
-                    ${"%.2f".format(step * 1000)} мм
 
-                    📐 Диаметр:
-                    ${"%.2f".format(diameter * 1000)} мм
-                    """.trimIndent()
+                result = """
+
+                🌀 Результат:
+
+                Частота:
+                $f MHz
+
+                Витков:
+                ${t.toInt()}
+
+                Шаг витка:
+                ${"%.2f".format(step)} мм
+
+                Длина провода:
+                ${"%.2f".format(wireLength)} м
+
+                Диаметр:
+                ${d.toInt()} мм
+
+                """.trimIndent()
 
             },
 
             modifier = Modifier.fillMaxWidth()
 
-        ) {
+        ){
 
             Text("Рассчитать 🧮")
 
@@ -111,4 +129,5 @@ fun Calculator() {
         }
 
     }
+
 }
