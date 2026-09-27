@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun HelixBuilderScreen() {
+fuvar screen by remember { mutableStateOf("home") }n HelixBuilderScreen() {
 
     Scaffold(
 
@@ -103,10 +104,13 @@ fun HelixBuilderScreen() {
 
 
             Button(
+    onClick = {
+        screen = "assembly"
+    },
 
-                onClick = {},
+                
 
-                modifier = Modifier.fillMaxWidth()
+            
 
             ) {
 
