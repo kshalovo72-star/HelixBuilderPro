@@ -1,14 +1,10 @@
 # HelixBuilderPro
 
-Android приложение-инструкция по изготовлению и настройке спиральной (Helix) антенны 12 витков.
+Android application for Helix 4990 MHz 12-turn antenna.
 
-## План функций
-- Пошаговая инструкция сборки
-- Схемы и размеры
-- Калькулятор параметров
-- Список материалов
-- Фото/иллюстрации этапов
-- Проверка готовой антенны
-
-## Технологии
-Kotlin + Jetpack Compose
+Planned modules:
+- Assembly Wizard
+- Helix calculator
+- 3D viewer
+- STL/3MF preparation
+- Interactive instructions
